@@ -15,14 +15,14 @@ save_springfield = Quest(name='Save Springfield', objective="Kill 5 Boars", gold
 player = Player(name='PlaceHolder', max_health=50, max_mana=0)
 
 # Defined Weapons
-dull_sword = Weapon(name='DULL SWORD', min_damage=5, max_damage=10, damage_type='Slash')
-rugged_bow = Weapon(name='RUGGED BOW', min_damage=6, max_damage=8, damage_type='Distraction')
+dull_sword = Weapon(name='DULL SWORD', min_damage=5, max_damage=10, damage_type='Slash', cost=0)
+rugged_bow = Weapon(name='RUGGED BOW', min_damage=6, max_damage=8, damage_type=' ', cost=0)
 
 player.weapons.append(dull_sword)
 player.weapons.append(rugged_bow)
 
 # Defined Shields
-wooden_shield = Shield(name='WOODEN SHIELD', min_block=10, max_block=20)
+wooden_shield = Shield(name='WOODEN SHIELD', min_block=10, max_block=20, cost=0)
 
 player.shields.append(wooden_shield)
 
