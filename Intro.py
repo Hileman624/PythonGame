@@ -27,12 +27,12 @@ wooden_shield = Shield(name='WOODEN SHIELD', min_block=10, max_block=20)
 player.shields.append(wooden_shield)
 
 # Defined Health Potion
-minor_health_potion = HealthPotion(name='MINOR HEALTH POTION', restore_health=12)
+minor_health_potion = HealthPotion(name='MINOR HEALTH POTION', restore_health=12, cost=10)
 
 player.inventory.append(minor_health_potion)
 
 # Defined Mana Potion
-minor_mana_potion = ManaPotion(name='MINOR MANA POTION', restore_mana=5)
+minor_mana_potion = ManaPotion(name='MINOR MANA POTION', restore_mana=5, cost=10)
 
 # Defined Creatures
 boar = Monster(name='Boar', max_health=12, min_damage=3, max_damage=6, weakness='Fire', xp=2)
