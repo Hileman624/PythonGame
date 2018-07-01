@@ -8,32 +8,52 @@ from ClassFile import Monster
 
 def monster_turn(player, monster):
     monster_attack = random.randint(monster.min_damage, monster.max_damage)
-    player_shield_shield = random.randint(player.shields[0].min_block, player.shields[0].max_block)
-    player.health = player.health - monster_attack
+    if player.raiseShield == 1:
+        player_shield_shield = random.randint(player.shields[0].min_block, player.shields[0].max_block)
+        monster_attack_adjust = monster_attack - player_shield_shield
+        if monster_attack_adjust < 0:
+            monster_attack_adjust = 0
+        monster_attack = monster_attack_adjust
+        player.raiseShield = 0
+    else:
+        player.health = player.health - monster_attack
+    time.sleep(1)
     print("The " + monster.name + " attacked you for " + str(monster_attack))
+    time.sleep(1)
     print("You have", player.health, "health remaining")
 
 def player_turn(player, monster):
     player_attack_sword = random.randint(player.weapons[0].min_damage, player.weapons[0].max_damage)
     player_attack_bow = random.randint(player.weapons[1].min_damage, player.weapons[1].max_damage)
-    print("")
-    print("")
+    time.sleep(.5)
     print("")
     print("Would you like to ")
+    time.sleep(.5)
     print("1) attack with " + player.weapons[0].name)
+    time.sleep(.5)
     print("2) attack with " + player.weapons[1].name)
+    time.sleep(.5)
     print("3) block with " + player.shields[0].name)
+    time.sleep(.5)
     print("4) use an item")
     print("")
-    action = input()
+    action = input(":")
     print("")
     if action == "1":
         monster.health = monster.health - player_attack_sword
-        print("You damaged the " + monster.name + " for " + str(player_attack_sword) + ". " + monster.name + " has " + str(monster.health))
+        print("You damaged the " + monster.name + " for " + str(player_attack_sword) + ".")
+        if monster.health < 0:
+            print(monster.name + " has 0 health remaining.")
+        else:
+            print(monster.name + " has " + str(monster.health) + " health remaining.")
 
     if action == "2":
         monster.health = monster.health - player_attack_bow
-        print("You damaged the " + monster.name + " for " + str(player_attack_bow) + ". " + monster.name + " has " + str(monster.health))
+        print("You damaged the " + monster.name + " for " + str(player_attack_bow) + ".")
+        if monster.health < 0:
+            print(monster.name + " has 0 health remaining.")
+        else:
+            print(monster.name + " has " + str(monster.health) + " health remaining.")
 
     if action == "3":
         player.raiseShield = 1
@@ -61,13 +81,17 @@ def monster_encounter(player, monster):
         while player.health > 0 and monster.health > 0:
             if random_num == 1:
                 # PLAYER ATTACKS FIRST
-                player_turn(player, monster)
-                monster_turn(player, monster)
+                if player.health > 0:
+                    player_turn(player, monster)
+                if monster.health > 0:
+                    monster_turn(player, monster)
 
             if random_num == 2:
                 # MONSTER ATTACKS FIRST
-                monster_turn(player, monster)
-                player_turn(player, monster)
+                if monster.health > 0:
+                    monster_turn(player, monster)
+                if player.health > 0:
+                    player_turn(player, monster)
 
         if player.health < 1:
             print("You Are Dead, RIP", player.name)
