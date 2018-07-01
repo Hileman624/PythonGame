@@ -1,2 +1,2 @@
 # PythonGame
-This is a text based, at the moment.
+This is a text based game, at the moment.
