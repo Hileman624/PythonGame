@@ -1,5 +1,3 @@
-
-from random import *
 from ClassFile import Quest
 from ClassFile import Player
 from ClassFile import Weapon
@@ -11,7 +9,7 @@ from MonsterEncounterFunction import monster_encounter
 from Adventure import springfield_intro
 
 # Defined Quest
-save_springfield = Quest(name='Save Springfield', objective="Kill 5 Boars", gold=5)
+save_springfield = Quest(name='Save Springfield', objective="Kill 5 Boars", gold=5, xp=10)
 
 # Defined Player
 player = Player(name='PlaceHolder', max_health=50, max_mana=0)
@@ -37,17 +35,13 @@ player.inventory.append(minor_health_potion)
 minor_mana_potion = ManaPotion(name='MINOR MANA POTION', restore_mana=5)
 
 # Defined Creatures
-boar = Monster(name='Boar', max_health=10, min_damage=3, max_damage=6, weakness='Fire', xp=2)
+boar = Monster(name='Boar', max_health=12, min_damage=3, max_damage=6, weakness='Fire', xp=2)
 wolf = Monster(name='Wolf', max_health=25, min_damage=5, max_damage=8, weakness='Fire', xp=5)
-
 dragon = Monster(name='Dragon', max_health=1200, min_damage=25, max_damage=50, weakness='Frost', xp=5000)
-
 
 print("Hello Traveler")
 u_name = input("What is your name? ")
 player.name = u_name
 print("Nice to meet you", player.name, "you have", player.health, "health ")
 monster_encounter(player, boar)
-springfield_intro(player)
-
-
+#springfield_intro(player)

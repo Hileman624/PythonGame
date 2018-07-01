@@ -1,4 +1,3 @@
-
 class Quest:
     def __init__(self, name, objective, gold, xp):
         self.name = name
