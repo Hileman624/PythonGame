@@ -2,7 +2,9 @@
 import random
 from ClassFile import Player
 from ClassFile import Weapon
+from ClassFile import Arrow
 from ClassFile import Ammo
+from ClassFile import Quiver
 from ClassFile import Shield
 from ClassFile import Armor
 from ClassFile import HealthPotion
@@ -15,8 +17,11 @@ from MonsterEncounterFunction import monster_encounter
 minor_health_potion = HealthPotion(name='MINOR HEALTH POTION', restore_health=12, cost=10)
 minor_mana_potion = ManaPotion(name='MINOR MANA POTION', restore_mana=5, cost=10)
 
-# AMMO
-wooden_arrow_with_flint_tip = Ammo(name='WOODEN ARROW (FLINT TIP)', min_damage=1, max_damage=3, damage_type='None', cost=6)
+# ARROWS
+wooden_arrow_with_flint_tip = Arrow(name='WOODEN ARROW (FLINT TIP)', min_damage=1, max_damage=3, damage_type='None', cost=6)
+
+# QUIVERS
+small_leather_quiver = Quiver(name='SMALL LEATHER QUIVER', max_capacity=10, cost=20)
 
 # Defined Melee Weapons
 rough_iron_sword = Weapon(name='ROUGH IRON SWORD', min_damage=8, max_damage=12, damage_type='Slash', cost=20)
@@ -185,37 +190,59 @@ def springfield_smith(player):
         if smith == 4:
             is_valid = 1
             print(' ')
+            print("1) No armor for sale at this moment")
+
+
+def springfield_leather_worker(player):
+
+    print("Welcome to my shack, I sell the finest leather goods around!")
+    action = input('Would you like to browse my ware? [YES/NO} ')
+    if action.upper() == 'YES':
+        print(" ")
+        print("1) ARMOR")
+        print("2) AMMO CONTAINERS")
+        shop = input()
+        if shop == 1:
+            print(' ')
             print("1) LEATHER HELM, 2 damage reduction, 35 gold ")
             print("2) LEATHER CHEST, 3 damage reduction, 40 gold ")
             print("3) LEATHER GLOVES, 1 damage reduction, 30 gold ")
             print("4) LEATHER PANTS, 3 damage reduction, 40 gold ")
             print("5) LEATHER BOOTS, 1 damage reduction, 30 gold ")
-            smith_armor = input()
-            if smith_armor == 1:
+            leather_armor = input()
+            if leather_armor == 1:
                 if player.gold >= leather_helm.cost:
                     player.gold = player.gold - leather_helm.cost
                     player.inventory.append(leather_helm)
 
-            if smith_armor == 2:
+            if leather_armor == 2:
                 if player.gold >= leather_chest.cost:
                     player.gold = player.gold - leather_chest.cost
                     player.inventory.append(leather_chest)
 
-            if smith_armor == 3:
+            if leather_armor == 3:
                 if player.gold >= leather_gloves.cost:
                     player.gold = player.gold - leather_gloves.cost
                     player.inventory.append(leather_gloves)
 
-            if smith_armor == 4:
+            if leather_armor == 4:
                 if player.gold >= leather_pants.cost:
                     player.gold = player.gold - leather_pants.cost
                     player.inventory.append(leather_pants)
 
-            if smith_armor == 5:
+            if leather_armor == 5:
                 if player.gold >= leather_boots.cost:
                     player.gold = player.gold - leather_boots.cost
                     player.inventory.append(leather_boots)
 
+        if shop == 2:
+            print('1) SMALL LEATHER QUIVER, 10 capacity, 20 gold')
+            ammo_container = input()
+            if ammo_container == 1:
+                if player.gold >= small_leather_quiver:
+                    print(" ")
+                    player.gold = player.gold - small_leather_quiver.cost
+                    player.inventory.append(small_leather_quiver)
 
 
 
