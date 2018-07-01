@@ -33,6 +33,7 @@ def springfield_shop(player):
         print("Okay, if you change your mind, I'll be here!")
         return
 
-#def springfield_smith(player):
+# def springfield_smith(player):
 
-#david was here
+# David was here
+# Chris was here
